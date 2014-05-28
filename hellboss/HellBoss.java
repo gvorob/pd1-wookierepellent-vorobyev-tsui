@@ -33,7 +33,6 @@ public class HellBoss implements TimerListener, KeyEventListener, MouseEventList
     public Timer timer;
     public Keyboard keys;
     public Mouse mouse;
-    public World world;
     
     public HellBoss()
     {}
@@ -51,14 +50,14 @@ public class HellBoss implements TimerListener, KeyEventListener, MouseEventList
         screen.c.addMouseMotionListener(mouse);
         mouse.addListener(this);
         
-        world = new World(mouse);
+        World.init(mouse);
     }
     
     public void run(float t)
     {
         screen.clear();
-        world.update(t, keys, mouse);
-        world.draw(screen.buffer);
+        World.update(t, keys, mouse);
+        World.draw(screen.buffer);
         screen.flushBuffer();
     }
 

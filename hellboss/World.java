@@ -26,66 +26,60 @@ import javax.imageio.ImageIO;
  * @author George Vorobyev <quaffle97@gmail.com>
  */
 public class World{
-    public static World w;
-    
-    public Mouse mouse;
+    public static Mouse mouse;
     
     public static final int MODE_PLAY = 0;
     public static final int MODE_MENU = 1;
-    
-    public int viewX = 250;
-    public int viewY = 250;
     
     public static int frames;
     public static float time;
     public static int fps;
     
-    public World(Mouse m)
+    public static void init(Mouse m)
     {
         mouse = m;
-        w = this;
         startGame();
     }
     
-    private void startGame()
+    private static void startGame()
     {
 	    //init things
     }
     
-    private void loadLevel(String fileName)
+    private static void loadLevel(String fileName)
     {
 	    //todo
     }
     
-    private void saveLevel()
+    private static void saveLevel()
     {
 	    //todo
     }
     
-    public void update(float time, Keyboard keys, Mouse m)//per-frame game updates
+    public static void update(float time, Keyboard keys, Mouse m)//per-frame game updates
     {
             updateWorld(time, keys, m);
     }
     
-    public void updateWorld(float time, Keyboard keys, Mouse m)
+    public static void updateWorld(float time, Keyboard keys, Mouse m)
     {
 	    //todo
     }
     
-    public void draw(BufferedImage b)
+    public static void draw(BufferedImage b)
     {
         drawWorld(b);
          
     }
     
-    public void drawWorld(BufferedImage b)
+    public static void drawWorld(BufferedImage b)
     {
         
 	Graphics2D g = b.createGraphics();
 	//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
 	//it doesnt work for everything though, peek inside the class
 	g.setColor(Color.red);
-	g.fillOval(50,50,50,50);
+	g.fillOval(mouse.getX(),mouse.getY(),50,50);
 	    //todo
     }
 }
