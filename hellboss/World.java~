@@ -82,7 +82,7 @@ public class World{
     {
         
 	Graphics2D g = b.createGraphics();
-	//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
+	Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
 	//it doesnt work for everything though, peek inside the class
 	g.setColor(Color.red);
 	g.fillOval(50,50,50,50);

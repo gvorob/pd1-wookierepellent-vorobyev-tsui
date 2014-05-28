@@ -10,10 +10,21 @@ import javax.swing.JApplet;
  *
  * @author George Vorobyev <quaffle97@gmail.com>
  */
-public class HellBoss implements TimerListener, KeyEventListener, MouseEventListener
+public class HellBoss extends JApplet implements TimerListener, KeyEventListener, MouseEventListener
 {
     
     public static HellBoss s;
+    
+    public void init()
+    {
+        s = this;
+        appletInitialize();
+    }
+    public void start()
+    {
+        timer.start();
+    }
+    public void stop(){}
     
     public static void main(String[] args) {
         
