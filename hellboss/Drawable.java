@@ -1,5 +1,5 @@
 package hellboss;
-import.java.image.BufferedImage;
+import java.awt.image.BufferedImage;
 
 
 public interface Drawable{

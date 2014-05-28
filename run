@@ -2,5 +2,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -e $DIR/build -a -d $DIR/build ]
 then 
 	echo $DIR/build
-	javac $DIR/hellboss/*.java -d $DIR/build
+	java -cp $DIR/build hellboss.HellBoss
 fi
