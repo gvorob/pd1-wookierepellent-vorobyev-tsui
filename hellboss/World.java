@@ -14,11 +14,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 import javax.imageio.ImageIO;
 
 /**
@@ -34,6 +30,9 @@ public class World{
     public static int frames;
     public static float time;
     public static int fps;
+
+	public static LinkedList<Entity> entities;
+	public static LinkedList<Drawable> drawables;
     
     public static void init(Mouse m)
     {
@@ -43,6 +42,8 @@ public class World{
     
     private static void startGame()
     {
+		entities = new LinkedList<Entity>();
+		drawables = new LinkedList<Drawable>();
 	    //init things
     }
     
@@ -63,6 +64,9 @@ public class World{
     
     public static void updateWorld(float time, Keyboard keys, Mouse m)
     {
+		for(Entity e: entities){
+			e.update(time);
+		}
 	    //todo
     }
     
@@ -75,11 +79,16 @@ public class World{
     public static void drawWorld(BufferedImage b)
     {
         
-	Graphics2D g = b.createGraphics();
-	//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
-	//it doesnt work for everything though, peek inside the class
-	g.setColor(Color.red);
-	g.fillOval(mouse.getX(),mouse.getY(),50,50);
+		Graphics2D g = b.createGraphics();
+		//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
+		//it doesnt work for everything though, peek inside the class
+		for(Drawable d: drawables){
+			d.draw(g);
+		}
 	    //todo
     }
+
+	public static void addEntity(Entity e){entities.add(e);}
+	public static void addDrawable(Drawable e){drawables.add(e);}
+
 }
