@@ -34,10 +34,13 @@ public class World{
 	public static LinkedList<Entity> entities;
 	public static LinkedList<Drawable> drawables;
     
+	public static boolean wasmousedown;
+
     public static void init(Mouse m)
     {
         mouse = m;
         startGame();
+		wasmousedown = false;
     }
     
     private static void startGame()
@@ -59,8 +62,20 @@ public class World{
     
     public static void update(float time, Keyboard keys, Mouse m)//per-frame game updates
     {
+			if(m.getL() && !wasmousedown){
+				addPoint(m);
+				wasmousedown = true;
+			}
+			else if (!m.getL()){
+				wasmousedown = false;
+			}
+
             updateWorld(time, keys, m);
     }
+
+	public static void addPoint(Mouse m){//adds a new point at current mouse location
+		MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()));
+	}
     
     public static void updateWorld(float time, Keyboard keys, Mouse m)
     {
