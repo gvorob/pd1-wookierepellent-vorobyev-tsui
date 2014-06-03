@@ -63,6 +63,12 @@ public class Vector2 {
         return temp;
     }
 
+	public void scaleAndMult(float coEffish, Vector2, vec)
+	{
+		x += coEffish * vec.x;
+		y += coEffish * vec.y;
+	}
+
     public static Vector2 inverse(Vector2 v)
     {
         return new Vector2(v.x * -1, v.y * -1);
