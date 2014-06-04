@@ -28,6 +28,8 @@ public class World{
     
 	public static boolean wasmousedown;
 
+	public static String mode;
+
     public static void init(Mouse m)
     {
         mouse = m;
@@ -39,6 +41,7 @@ public class World{
     {
 		entities = new LinkedList<Entity>();
 		drawables = new LinkedList<Drawable>();
+		mode = "play";
 	    //init things
     }
     
@@ -61,8 +64,16 @@ public class World{
 			else if (!m.getL()){
 				wasmousedown = false;
 			}
+			
+			if(keys.getKeyPressed(KeyEvent.VK_P)){
+				if(mode == "pause")
+					mode = "play";
+				else if(mode == "play")
+					mode = "pause";
+			}
 
-            updateWorld(time, keys, m);
+			if(mode == "play")
+				updateWorld(time, keys, m);
     }
 
 	public static void addPoint(Mouse m){//adds a new point at current mouse location
@@ -79,14 +90,17 @@ public class World{
     
     public static void draw(BufferedImage b)
     {
-        drawWorld(b);
-         
+		Graphics2D g = b.createGraphics();
+        drawWorld(g);
+		if(mode == "pause"){
+			g.setColor(Color.black);
+			g.drawString("PAUSED",5,17);
+        }
     }
     
-    public static void drawWorld(BufferedImage b)
+    public static void drawWorld(Graphics2D g)
     {
         
-		Graphics2D g = b.createGraphics();
 		//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
 		//it doesnt work for everything though, peek inside the class
 		for(Drawable d: drawables){
