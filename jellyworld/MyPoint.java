@@ -50,11 +50,11 @@ public class MyPoint implements Drawable, Entity{
 	public int getZOrder(){return 0;}//for now
 
 	public LinkedList<MyPoint> getNodesWithin(double dist, Vector2 pos){
-		LinkedList<MyPoint> temp = new LinkedList();
+		LinkedList<MyPoint> temp = new LinkedList<MyPoint>();
 		for(MyPoint n : Nodes){
 			if(n.getPos().distTo(pos) <= dist)
 				temp.add(n);
 		}
-		return n;
+		return temp;
 	}
 }
