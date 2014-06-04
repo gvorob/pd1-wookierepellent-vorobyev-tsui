@@ -1,2 +1,2 @@
 Log
-date	name	change
+6/3/14		Derek		MyPoint has mass, velocity, gravity

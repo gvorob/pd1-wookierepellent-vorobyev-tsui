@@ -2,14 +2,14 @@ package jellyworld;
 
 import javax.swing.JApplet;
 
-public class HellBoss implements TimerListener, KeyEventListener, MouseEventListener
+public class JellyWorld implements TimerListener, KeyEventListener, MouseEventListener
 {
     
-    public static HellBoss s;
+    public static JellyWorld s;
     
     public static void main(String[] args) {
         
-        s = new HellBoss();
+        s = new JellyWorld();
         s.initialize();
         //long time = System.currentTimeMillis() - 1;
         //while(true)
@@ -26,7 +26,7 @@ public class HellBoss implements TimerListener, KeyEventListener, MouseEventList
     public Keyboard keys;
     public Mouse mouse;
     
-    public HellBoss()
+    public JellyWorld()
     {}
     
     public void initialize()
@@ -53,24 +53,24 @@ public class HellBoss implements TimerListener, KeyEventListener, MouseEventList
         screen.flushBuffer();
     }
 
-    @Override
+    //@Override
     public void timerEvent() {
         run((float)timer.interval / 1000);
     }
 
-    @Override
+    //@Override
     public boolean KeyChange(int index, boolean down) {
         
         return true;
     }
 
-    @Override
+    //@Override
     public boolean mouseClicked(int x, int y, boolean left, boolean down) {
         
         return true;
     }
 
-    @Override
+    //@Override
     public boolean mouseMoved(int oldX, int oldY, int x, int y, boolean left, boolean right) {
         
         return true;

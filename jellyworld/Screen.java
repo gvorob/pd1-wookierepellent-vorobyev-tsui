@@ -15,10 +15,6 @@ import java.awt.image.ImageObserver;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author George
- */
 public class Screen implements ImageObserver
 {
     public Frame f;
