@@ -19,7 +19,8 @@ public class MyPoint implements Drawable, Entity{
 	
 	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(pointSize * 5, this.pos));
 	for (MyPoint q : tempNeighbors){
-	    neighbors.add(new Link(0.5, this.pos.distTo(q.getPos()), this));
+	    addLink(q);
+	    q.addLink(this);
 	}
 
 	Nodes.add(this);
@@ -38,7 +39,7 @@ public class MyPoint implements Drawable, Entity{
 	pos.add(velocity);
 	// update for wall bounce
 	if (pos.y >= JellyWorld.s.screen.c.getHeight() - (pointSize / 2)){
-	    velocity.y *= -0.9;
+	    velocity.y *= -.90;
 	    pos.y = JellyWorld.s.screen.c.getHeight() - (pointSize / 2);
 	}
     }
@@ -46,6 +47,11 @@ public class MyPoint implements Drawable, Entity{
     public void draw(Graphics g){//@override Drawable
 	g.setColor(Color.red);
 	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
+
+	g.setColor(Color.black);
+	for (Link l : neighbors){
+	    g.drawLine((int) this.pos.x, (int)this.pos.y, (int)l.other.getPos().x, (int)l.other.getPos().y);
+	}
     }
 
     public Vector2 getPos(){
@@ -63,5 +69,9 @@ public class MyPoint implements Drawable, Entity{
 		temp.add(n);
 	}
 	return temp;
+    }
+
+    public void addLink(MyPoint p){
+	neighbors.add(new Link(0.5, this.pos.distTo(p.getPos()), p));
     }
 }
