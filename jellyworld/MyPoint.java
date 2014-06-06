@@ -9,7 +9,8 @@ public class MyPoint implements Drawable, Entity{
     private double mass;
     private int pointSize;
 
-    private LinkedList<MyPoint> neighbors;
+	public int id;//used for traversing connected nodes
+    public LinkedList<MyPoint> neighbors;
 	public static LinkedList<MyPoint> Nodes = new LinkedList<MyPoint>();
 	
     public MyPoint(Vector2 p){
@@ -41,8 +42,16 @@ public class MyPoint implements Drawable, Entity{
 	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
     }
 
-	public Vector2 getPos(){
-		return pos.clone();
+	public Vector2 getPos(){return pos.clone();}
+	public Vector2 getVel(){return vel.clone();}
+	public double getMass(){return mass;}
+
+	public static void numberPoints(){
+		int count = 0;
+		for(MyPoint m : Nodes){
+			m.id = count;
+			count++;
+		}
 	}
 
 	public boolean isDead(){return false;}//@override Entity

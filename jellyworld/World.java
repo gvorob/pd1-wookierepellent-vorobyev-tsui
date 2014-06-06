@@ -52,6 +52,13 @@ public class World{
     
     private static void saveLevel()
     {
+		String result = "";
+		MyPoint.numberPoints();
+		for(Node n: MyPoint.Nodes){
+			String line = "";
+	//		line += 
+			
+		}
 	    //todo
     }
     
