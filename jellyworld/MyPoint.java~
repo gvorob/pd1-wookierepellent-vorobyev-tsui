@@ -27,7 +27,7 @@ public class MyPoint implements Drawable, Entity{
 	World.addEntity(this);
 	World.addDrawable(this);
 	
-	gravity = new Vector2(0,555);
+	gravity = new Vector2(0,155);
 	velocity = new Vector2(0,1);
 
 	mass = 10;

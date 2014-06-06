@@ -63,7 +63,7 @@ public class Vector2 {
         return temp;
     }
 
-	public void scaleAndAdd(float coEffish, Vector2 vec)
+	public void scaleAndMult(float coEffish, Vector2 vec)
 	{
 		x += coEffish * vec.x;
 		y += coEffish * vec.y;
