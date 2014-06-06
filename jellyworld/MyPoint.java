@@ -34,8 +34,17 @@ public class MyPoint implements Drawable, Entity{
     }
 	
     public void update(float time){//@override Entity
-	// update for gravity
-	velocity.scaleAndAdd(time,gravity);
+	// update for net force
+	Vector2 netForce = Vector2.Zero();
+	Vector2 tempForce;
+	for (Link l : neighbors){
+	    tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
+	    tempForce.setLength((float)(l.k * (tempForce.length() - l.len))); 
+	    netForce.add(tempForce);
+	}
+	netForce.add(gravity);
+	velocity.scaleAndAdd(time,netForce);
+	velocity.vecMult(0.99f);
 	pos.scaleAndAdd(time,velocity);
 	// update for wall bounce
 	if (pos.y >= JellyWorld.s.screen.c.getHeight() - (pointSize / 2)){
@@ -72,6 +81,6 @@ public class MyPoint implements Drawable, Entity{
     }
 
     public void addLink(MyPoint p){
-	neighbors.add(new Link(0.5, this.pos.distTo(p.getPos()), p));
+	neighbors.add(new Link(100, this.pos.distTo(p.getPos()), p));
     }
 }
