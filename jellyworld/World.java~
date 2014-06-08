@@ -88,11 +88,11 @@ public class World{
 		for(Entity e: entities){
 			e.update2(time);
 		}
-		/*Vector2 sumVel = Vector2.Zero();
+		Vector2 sumVel = Vector2.Zero();
 		for(MyPoint mp : MyPoint.Nodes){
 			sumVel.add(mp.getVel());
 		}
-		Misc.prln(sumVel.toString());*/
+		Misc.prln(sumVel.toString());
 	    //todo
     }
     

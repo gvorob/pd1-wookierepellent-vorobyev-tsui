@@ -5,3 +5,4 @@ Log
 6/04	George	Link class for springs between points
 6/05	George  Fixed gravity and velocity scaling, so is 1/sec, not 1/tick
 6/06	Derek	MyPoint calculates net forces (INCOMPLETE)
+6/08	George 	fixed forces, accelerations/velocity are now all changed at once, THEN all the positions are updated
