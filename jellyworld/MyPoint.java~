@@ -41,15 +41,15 @@ public class MyPoint implements Drawable, Entity{
 			tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
 			tempForce.setLength((float)(l.k * (tempForce.length() - l.len))); 
 			netForce.add(tempForce);
-			Misc.prln("--" + tempForce.toString());
+			//Misc.prln("--" + tempForce.toString());
 		}
 		netForce.add(gravity);
 		velocity.scaleAndAdd(time,netForce);
+		velocity.vecMult(0.98f);
 	}
 
 	public void update2(float time){
 
-		//velocity.vecMult(0.95f);
 		pos.scaleAndAdd(time,velocity);
 
 		// update for wall bounce
