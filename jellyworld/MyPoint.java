@@ -9,7 +9,7 @@ public class MyPoint implements Drawable, Entity{
     private double mass;
     private int pointSize;
     private boolean isFixed;
-
+    public int id;//used for traversing connected nodes
     private LinkedList<Link> neighbors;
     public static LinkedList<MyPoint> Nodes = new LinkedList<MyPoint>();
 
@@ -22,6 +22,7 @@ public class MyPoint implements Drawable, Entity{
 	for (MyPoint q : tempNeighbors){
 	    this.addLink(q);
 	    q.addLink(this);
+
 	}
 
 	Nodes.add(this);
@@ -70,6 +71,16 @@ public class MyPoint implements Drawable, Entity{
 	g.setColor(Color.black);
 	for (Link l : neighbors){
 	    g.drawLine((int) this.pos.x, (int)this.pos.y, (int)l.other.getPos().x, (int)l.other.getPos().y);
+	public Vector2 getPos(){return pos.clone();}
+	public Vector2 getVel(){return vel.clone();}
+	public double getMass(){return mass;}
+
+	public static void numberPoints(){
+		int count = 0;
+		for(MyPoint m : Nodes){
+			m.id = count;
+			count++;
+		}
 	}
     }
 
