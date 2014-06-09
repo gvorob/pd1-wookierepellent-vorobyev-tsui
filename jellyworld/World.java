@@ -58,6 +58,10 @@ public class World{
     public static void update(float time, Keyboard keys, Mouse m)//per-frame game updates
     {
 			if(m.getL() && !wasmousedown){
+			    if(keys.getKeyDown(KeyEvent.VK_SHIFT)){
+				addPoint(m, true);
+			    }
+			    addPoint(m, false);
 				addPoint(m);
 				wasmousedown = true;
 			}
