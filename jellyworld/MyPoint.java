@@ -102,6 +102,6 @@ public class MyPoint implements Drawable, Entity{
     }
 
     public void addLink(MyPoint p){
-	neighbors.add(new Link(300, this.pos.distTo(p.getPos()), p));
+	neighbors.add(new Link(10, this.pos.distTo(p.getPos()), p));
     }
 }
