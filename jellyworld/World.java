@@ -52,25 +52,15 @@ public class World{
     
     private static void saveLevel()
     {
-		String result = "";
-		MyPoint.numberPoints();
-		for(Node n: MyPoint.Nodes){
-			String line = "";
-	//		line += 
-			
-		}
 	    //todo
     }
     
     public static void update(float time, Keyboard keys, Mouse m)//per-frame game updates
     {
 			if(m.getL() && !wasmousedown){
-			    if(keys.getKeyDown(KeyEvent.VK_SHIFT)){
-				addPoint(m, true);
-			    }
-			    addPoint(m, false);
-				addPoint(m);
-				wasmousedown = true;
+			    if(keys.getKey(KeyEvent.VK_SHIFT)) addPoint(m, true);
+			    else addPoint(m, false);
+			    wasmousedown = true;
 			}
 			else if (!m.getL()){
 				wasmousedown = false;
@@ -87,8 +77,8 @@ public class World{
 				updateWorld(time, keys, m);
     }
 
-	public static void addPoint(Mouse m){//adds a new point at current mouse location
-		MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()));
+    public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
+	MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()), b);
 	}
     
     public static void updateWorld(float time, Keyboard keys, Mouse m)
