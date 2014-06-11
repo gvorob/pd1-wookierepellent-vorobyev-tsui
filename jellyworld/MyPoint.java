@@ -3,14 +3,14 @@ import java.awt.*;
 import java.util.*;
 
 public class MyPoint implements Drawable, Entity{
-    private Vector2 pos;
-    private Vector2 velocity;
-    private Vector2 gravity;
-    private double mass;
-    private int pointSize;
-    private boolean isFixed;
+    protected Vector2 pos;
+    protected Vector2 velocity;
+    protected Vector2 gravity;
+    protected double mass;
+    protected int pointSize;
+    protected boolean isFixed;
     public int id;//used for traversing connected nodes
-    private LinkedList<Link> neighbors;
+    protected LinkedList<Link> neighbors;
     public static LinkedList<MyPoint> Nodes = new LinkedList<MyPoint>();
 
     public MyPoint(Vector2 p, boolean fixed){
@@ -103,5 +103,15 @@ public class MyPoint implements Drawable, Entity{
 
     public void addLink(MyPoint p){
 	neighbors.add(new Link(10, this.pos.distTo(p.getPos()), p));
+    }
+    
+    public void removeNeighbor(MyPoint other){
+	Link temp = new Link(0,0,other);
+	for (Link l: neighbors){
+	    if (l.other.equals(other)){
+		temp = l;
+	    }
+	}
+	neighbors.remove(temp);
     }
 }
