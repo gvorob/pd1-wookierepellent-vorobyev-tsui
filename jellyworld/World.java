@@ -33,7 +33,6 @@ public class World{
 	public static int connectRange = 10;
 	public static int toolMode = 0;
 
-	public static 
 
 	public static void init(Mouse m)
 	{
@@ -62,7 +61,7 @@ public class World{
 
 	public static void update(float time, Keyboard keys, Mouse m)//per-frame game updates
 	{
-		else if (!m.getL()){
+		if (!m.getL()){
 			wasmousedown = false;
 		}
 
