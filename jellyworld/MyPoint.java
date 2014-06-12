@@ -3,8 +3,7 @@ import java.awt.*;
 import java.util.*;
 
 public class MyPoint implements Drawable, Entity{
-    <<<<<<< HEAD
-	protected Vector2 pos;
+    protected Vector2 pos;
     protected Vector2 velocity;
     protected Vector2 gravity;
     protected double mass;
