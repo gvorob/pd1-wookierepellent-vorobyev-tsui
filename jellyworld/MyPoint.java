@@ -3,7 +3,8 @@ import java.awt.*;
 import java.util.*;
 
 public class MyPoint implements Drawable, Entity{
-    protected Vector2 pos;
+    <<<<<<< HEAD
+	protected Vector2 pos;
     protected Vector2 velocity;
     protected Vector2 gravity;
     protected double mass;
@@ -13,12 +14,12 @@ public class MyPoint implements Drawable, Entity{
     protected LinkedList<Link> neighbors;
     public static LinkedList<MyPoint> Nodes = new LinkedList<MyPoint>();
 
-    public MyPoint(Vector2 p, boolean fixed){
+    public MyPoint(Vector2 p, boolean fixed, double connectRange){
 	pos = p.clone();
-	pointSize = 10;
+	pointSize = 60;
 	neighbors = new LinkedList<Link>();
 
-	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(pointSize * 5, this.pos));
+	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(connectRange, this.pos));
 	for (MyPoint q : tempNeighbors){
 	    this.addLink(q);
 	    q.addLink(this);
@@ -64,13 +65,15 @@ public class MyPoint implements Drawable, Entity{
 	}
     }
 
-    public void draw(Graphics g){//@override Drawable
+    public void draw(Graphics g, boolean debug){//@override Drawable
 	g.setColor(Color.red);
 	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
 
-	g.setColor(Color.black);
-	for (Link l : neighbors){
-	    g.drawLine((int) this.pos.x, (int)this.pos.y, (int)l.other.getPos().x, (int)l.other.getPos().y);
+	if(debug){
+	    g.setColor(Color.black);
+	    for (Link l : neighbors){
+		g.drawLine((int) this.pos.x, (int)this.pos.y, (int)l.other.getPos().x, (int)l.other.getPos().y);
+	    }
 	}
     }
 
@@ -102,7 +105,7 @@ public class MyPoint implements Drawable, Entity{
     }
 
     public void addLink(MyPoint p){
-	neighbors.add(new Link(10, this.pos.distTo(p.getPos()), p));
+	neighbors.add(new Link(200, this.pos.distTo(p.getPos()), p));
     }
     
     public void removeNeighbor(MyPoint other){
