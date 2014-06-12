@@ -60,7 +60,7 @@ public class World{
     }
 
     public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
-	Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b);
+	Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b,connectRange);
 	//init things
     }
 
@@ -109,11 +109,11 @@ public class World{
 	if(mode == "play")
 	    updateWorld(time, keys, m);
     }
-
+    /*
     public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
 	MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()), b, connectRange);
     }
-
+    */
     public static void updateWorld(float time, Keyboard keys, Mouse m)
     {
 	for(Entity e: entities){

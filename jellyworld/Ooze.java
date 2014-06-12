@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Ooze extends MyPoint{
 
-    public Ooze (Vector2 p, boolean fixed){
-	super(p, fixed);
+    public Ooze (Vector2 p, boolean fixed, double connectRange){
+	super(p, fixed,connectRange);
     }
 
     public void update1(float time){//@override Entity
