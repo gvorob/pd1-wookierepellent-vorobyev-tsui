@@ -14,7 +14,7 @@ public class Ooze extends MyPoint{
 	for (Link l : neighbors){
 	    tempForce = Vector2.vecSubt(l.other.getPos(), this.pos);
 	    tempForce.setLength((float)(l.k * (tempForce.length() - l.len)));
-	    if (tempForce.length() > 5){
+	    if (tempForce.length() > 150){
 		temp.add(l.other);
 	    }
 	}
