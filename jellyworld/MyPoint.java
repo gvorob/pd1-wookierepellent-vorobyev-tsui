@@ -9,6 +9,7 @@ public class MyPoint implements Drawable, Entity{
     protected double mass;
     protected int pointSize;
     protected boolean isFixed;
+    protected int constant;
     public int id;//used for traversing connected nodes
     protected LinkedList<Link> neighbors;
     public static LinkedList<MyPoint> Nodes = new LinkedList<MyPoint>();
@@ -104,7 +105,7 @@ public class MyPoint implements Drawable, Entity{
     }
 
     public void addLink(MyPoint p){
-	neighbors.add(new Link(200, this.pos.distTo(p.getPos()), p));
+	neighbors.add(new Link(constant, this.pos.distTo(p.getPos()), p));
     }
     
     public void removeNeighbor(MyPoint other){

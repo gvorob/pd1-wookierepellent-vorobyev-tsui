@@ -11,4 +11,8 @@ public class Link{
 	len = length;
 	other = point;
     }
+    
+    public boolean equals(Link l){
+    	return ((k == l.k) && (len == l.len) && (other.equals(l)));
+    }
 }
