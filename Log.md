@@ -8,11 +8,8 @@ Log
 6/08	George 	fixed forces, accelerations/velocity are now all changed at once, THEN all the positions are updated
 6/09	Derek	Fixed points with SHIFT
 6/09 	George 	Fixed points with SHIFT
-<<<<<<< HEAD
 6/11	Derek	Ooze class, remove links
 6/11 	George 	Debug GUI shenanigans
 6/12	Derek	Github branches - mess
 6/12 	George	Github branches - mess
-=======
-6/11	George	UI shenanigans
->>>>>>> 6a131aa7118e45d953934003ccbc5340d401ce54
+6/15 	George  More ui things
