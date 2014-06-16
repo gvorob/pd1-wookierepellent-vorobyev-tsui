@@ -2,5 +2,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -e $DIR/build -a -d $DIR/build ]
 then 
 	echo $DIR/build
-	java -cp "$DIR/build" jellyworld.JellyWorld
+	java -cp $DIR/build jellyworld.JellyWorld
 fi
