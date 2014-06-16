@@ -30,8 +30,8 @@ public class World{
 
 	public static String mode;
 	public static boolean DEBUG = false;
-	public static int connectRange = 10;
-	public static int toolMode = 0;
+	public static int connectRange = 50;
+	public static int toolMode = 1;
 
 
 	public static void init(Mouse m)
@@ -106,7 +106,7 @@ public class World{
 			case 1:
 				if(m.getL() && !wasmousedown){
 					if(keys.getKey(KeyEvent.VK_SHIFT)) addOoze(m, true);
-					else addPoint(m, false);
+					else addOoze(m, false);
 					wasmousedown = true;
 				}
 
@@ -164,7 +164,7 @@ public class World{
 		g.drawOval(mouse.getX() - connectRange,mouse.getY() - connectRange,connectRange * 2, connectRange * 2);
 		if(mode == "pause"){g.drawString("PAUSED",5,17);}
 		if(DEBUG){g.drawString("DEBUG MODE",5,17 + 14);}
-		if(DEBUG){g.drawString(getToolString(),5,17 + 14 + 14);}
+		if(true){g.drawString(getToolString(),5,17 + 14 + 14);}
 	}
 
 	public static void drawWorld(Graphics2D g)

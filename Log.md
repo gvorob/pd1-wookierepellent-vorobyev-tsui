@@ -15,3 +15,4 @@ Log
 6/13	Derek	Link fixing
 6/13	George	Github branches
 6/15 	George  More ui things
+6/15	George	Oooze works properly now, sorta, still needs viscosity and constants tweaking

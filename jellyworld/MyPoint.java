@@ -17,6 +17,7 @@ public class MyPoint implements Drawable, Entity{
     public MyPoint(Vector2 p, boolean fixed, double connectRange){
 	pos = p.clone();
 	pointSize = 60;
+	constant = 400;
 	neighbors = new LinkedList<Link>();
 
 	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(connectRange, this.pos));
