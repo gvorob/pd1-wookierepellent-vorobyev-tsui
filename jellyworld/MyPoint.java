@@ -16,7 +16,7 @@ public class MyPoint implements Drawable, Entity{
 
     public MyPoint(Vector2 p, boolean fixed, double connectRange){
 	pos = p.clone();
-	pointSize = 60;
+	pointSize = (int)(connectRange * 1.5);
 	neighbors = new LinkedList<Link>();
 
 	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(connectRange, this.pos));
@@ -30,7 +30,9 @@ public class MyPoint implements Drawable, Entity{
 	World.addEntity(this);
 	World.addDrawable(this);
 
-	gravity = new Vector2(0,555);
+	if (World.gravityOn) gravity = new Vector2(0,555);
+	else gravity = Vector2.Zero();
+	
 	velocity = new Vector2(0,1);
 
 	mass = 10;
@@ -106,6 +108,14 @@ public class MyPoint implements Drawable, Entity{
 
     public void addLink(MyPoint p){
 	neighbors.add(new Link(constant, this.pos.distTo(p.getPos()), p));
+    }
+    
+    public void switchGravity(){
+    	if (gravity.length() != 0){
+    	 	gravity = Vector2.Zero();
+    	} else {
+    		gravity = new Vector2(0,555);
+    	}
     }
     
     public void removeNeighbor(MyPoint other){

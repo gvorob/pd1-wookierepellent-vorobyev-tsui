@@ -30,8 +30,10 @@ public class World{
 
     public static String mode;
     public static boolean DEBUG = false;
-    public static int connectRange = 10;
+    public static int connectRange = 30;
     public static int toolMode = 0;
+    
+    public static boolean gravityOn = true;
 
 
     public static void init(Mouse m)
@@ -77,6 +79,12 @@ public class World{
 		mode = "play";
 	    else if(mode == "play")
 		mode = "pause";
+	}
+	if(keys.getKeyPressed(KeyEvent.VK_G)){
+		gravityOn = !gravityOn;
+		for (MyPoint p: MyPoint.Nodes){
+			p.switchGravity();
+		}
 	}
 	if(keys.getKeyPressed(KeyEvent.VK_D)){DEBUG = !DEBUG;}
 	if(keys.getKeyPressed(KeyEvent.VK_OPEN_BRACKET)){connectRange -= 10;}
@@ -138,6 +146,10 @@ public class World{
 	g.drawOval(mouse.getX() - connectRange,mouse.getY() - connectRange,connectRange * 2, connectRange * 2);
 	if(mode == "pause"){g.drawString("PAUSED",5,17);}
 	if(DEBUG){g.drawString("DEBUG MODE",5,17 + 14);}
+	
+	if(gravityOn){g.drawString("GRAVITY ON",5,17 + 28);}
+	else {g.drawString("GRAVITY OFF",5,17 + 28);}
+	
     }
 
     public static void drawWorld(Graphics2D g)
