@@ -14,56 +14,57 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 public class World{
-	public static Mouse mouse;
+    public static Mouse mouse;
 
-	public static final int MODE_PLAY = 0;
-	public static final int MODE_MENU = 1;
+    public static final int MODE_PLAY = 0;
+    public static final int MODE_MENU = 1;
 
-	public static int frames;
-	public static float time;
-	public static int fps;
+    public static int frames;
+    public static float time;
+    public static int fps;
 
-	public static LinkedList<Entity> entities;
-	public static LinkedList<Drawable> drawables;
+    public static LinkedList<Entity> entities;
+    public static LinkedList<Drawable> drawables;
 
-	public static boolean wasmousedown;
+    public static boolean wasmousedown;
 
-	public static String mode;
-	public static boolean DEBUG = false;
-	public static int connectRange = 50;
-	public static int toolMode = 1;
-
-
-	public static void init(Mouse m)
-	{
-		mouse = m;
-		startGame();
-		wasmousedown = false;
-	}
+    public static String mode;
+    public static boolean DEBUG = false;
+    public static int connectRange = 30;
+    public static int toolMode = 0;
+    
+    public static boolean gravityOn = true;
 
 
-	private static void startGame()
-	{
-		entities = new LinkedList<Entity>();
-		drawables = new LinkedList<Drawable>();
-		mode = "play";
-		//init things
-	}
+    public static void init(Mouse m)
+    {
+	mouse = m;
+	startGame();
+	wasmousedown = false;
+    }
 
-	private static void loadLevel(String fileName)
-	{
-		//todo
-	}
+    private static void startGame()
+    {
+	entities = new LinkedList<Entity>();
+	drawables = new LinkedList<Drawable>();
+	mode = "play";
+	//init things
+    }
+    
+    private static void loadLevel(String fileName)
+    {
+	//todo
+    }
+    
+    private static void saveLevel()
+    {
+	//todo
+    }
 
-	private static void saveLevel()
-	{
-		//todo
-	}
-
-	public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
-		MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()), b,connectRange);
-		//init things
-	}
+    public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
+	Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b,connectRange);
+	//init things
+    }
 
 	public static void addOoze(Mouse m, boolean b){//adds a new point at current mouse location
 		Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b,connectRange);
@@ -85,6 +86,12 @@ public class World{
 				mode = "pause";
 		}
 		if(keys.getKeyPressed(KeyEvent.VK_D)){DEBUG = !DEBUG;}
+		if(keys.getKeyPressed(KeyEvent.VK_G)){
+			gravityOn = !gravityOn;
+			for (MyPoint p: MyPoint.Nodes){
+				p.switchGravity();
+			}
+		}
 		if(keys.getKeyPressed(KeyEvent.VK_OPEN_BRACKET)){connectRange -= 10;}
 		if(keys.getKeyPressed(KeyEvent.VK_CLOSE_BRACKET)){connectRange += 10;}
 		if(connectRange < 1){connectRange = 1;}
@@ -154,28 +161,30 @@ public class World{
 		  }
 		  Misc.prln(sumVel.toString());*/
 		//todo
+    }
+
+    public static void draw(BufferedImage b)
+    {
+	Graphics2D g = b.createGraphics();
+	drawWorld(g);
+	g.setColor(Color.black);
+	g.drawOval(mouse.getX() - connectRange,mouse.getY() - connectRange,connectRange * 2, connectRange * 2);
+	if(mode == "pause"){g.drawString("PAUSED",5,17);}
+	if(DEBUG){g.drawString("DEBUG MODE",5,17 + 14);}
+	
+	if(gravityOn){g.drawString("GRAVITY ON",5,17 + 28);}
+	else {g.drawString("GRAVITY OFF",5,17 + 28);}
+	
+    }
+
+    public static void drawWorld(Graphics2D g)
+    {
+
+	//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
+	//it doesnt work for everything though, peek inside the class
+	for(Drawable d: drawables){
+	    d.draw(g,DEBUG);
 	}
-
-	public static void draw(BufferedImage b)
-	{
-		Graphics2D g = b.createGraphics();
-		drawWorld(g);
-		g.setColor(Color.black);
-		g.drawOval(mouse.getX() - connectRange,mouse.getY() - connectRange,connectRange * 2, connectRange * 2);
-		if(mode == "pause"){g.drawString("PAUSED",5,17);}
-		if(DEBUG){g.drawString("DEBUG MODE",5,17 + 14);}
-		if(true){g.drawString(getToolString(),5,17 + 14 + 14);}
-	}
-
-	public static void drawWorld(Graphics2D g)
-	{
-
-		//Misc.prln("aasf");//Misc.prln is just a convenient shorthand i wrote for system.out.println
-		//it doesnt work for everything though, peek inside the class
-		for(Drawable d: drawables){
-			d.draw(g,DEBUG);
-		}
-		//todo
 	}
 
 	public static void addEntity(Entity e){entities.add(e);}
