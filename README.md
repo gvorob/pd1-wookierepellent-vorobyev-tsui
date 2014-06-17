@@ -20,6 +20,7 @@ Before compiling a folder named "build" is needed in the same directory that con
 Click the screen to make ooze.  
 Debug mode: see the neighbor connections by pressing "D"  
 Pause: press "P"  
+Gravity on/off: press "G"
 Increase link connectivity size: "]" (only in debug mode)  
 Decrease link connectivity size: "[" (only in debug mode)  
 
