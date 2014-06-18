@@ -14,5 +14,8 @@ Log
 6/12 	George	Github branches - mess
 6/13	Derek	Link fixing
 6/13	George	Github branches
-6/15 	George  More ui things
+6/15 	Derek   More ui things
 6/15	George	Oooze works properly now, sorta, still needs viscosity and constants tweaking
+6/17	Derek	Gravity on/off feature
+Project extension
+6/18
