@@ -45,11 +45,22 @@ public class Ooze extends MyPoint{
 
 	public Vector2 getSpringForce(Link l){
 		Vector2 tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
+
+		Vector2 relVel = Vector2.vecSubt(this.velocity, l.other.getVel());
+		Vector2 dir = tempForce.clone();
+		dir.setLength(1);
+		dir.setLength(Vector2.dotProd(dir,relVel));
+		relVel.vecSubt(dir);
+		relVel.setLength(relVel.length() * relVel.length() * -1 * 1/10);
+
+
+		float length = tempForce.length();
 		float ratio = (float)(tempForce.length() - l.len);
 		if(ratio > 0){
 			ratio = (float)(ratio+1)/(ratio * ratio + 1); 
 		}
 		tempForce.setLength((float)(l.k * ratio)); 
+		tempForce.vecAdd(relVel);
 		return tempForce;
 		
 	}
