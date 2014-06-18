@@ -16,7 +16,7 @@ public class MyPoint implements Drawable, Entity{
 
     public MyPoint(Vector2 p, boolean fixed, double connectRange){
 	pos = p.clone();
-	pointSize = (int)(connectRange * 1.5);
+	pointSize = (int)(connectRange * 1.15);
 	neighbors = new LinkedList<Link>();
 
 	LinkedList<MyPoint> tempNeighbors = new LinkedList<MyPoint>(getNodesWithin(connectRange, this.pos));
@@ -65,10 +65,20 @@ public class MyPoint implements Drawable, Entity{
 	    velocity.y *= -.90;
 	    pos.y = JellyWorld.s.screen.c.getHeight() - (pointSize / 2);
 	}
+	
+	if (pos.x <= (pointSize / 2)){
+	    velocity.x *= -.90;
+	    pos.x = (pointSize / 2);
+	}
+	
+	if (pos.x >= JellyWorld.s.screen.c.getWidth() - (pointSize / 2)){
+	    velocity.x *= -.90;
+	    pos.x = JellyWorld.s.screen.c.getWidth() - (pointSize / 2);
+	}
     }
 
     public void draw(Graphics g, boolean debug){//@override Drawable
-	g.setColor(Color.red);
+	g.setColor(Color.green);
 	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
 
 	if(debug){
