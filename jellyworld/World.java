@@ -186,6 +186,7 @@ public class World{
 	
 	if(gravityOn){g.drawString("GRAVITY ON",5,17 + 28);}
 	else {g.drawString("GRAVITY OFF",5,17 + 28);}
+	g.drawString(getToolString(),5,17 + 28 + 14);
 	
     }
 
