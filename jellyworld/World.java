@@ -62,7 +62,7 @@ public class World{
     }
 
     public static void addPoint(Mouse m, boolean b){//adds a new point at current mouse location
-	Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b,connectRange);
+	MyPoint p = new MyPoint(new Vector2(m.getX(),m.getY()), b,connectRange);
 	//init things
     }
 

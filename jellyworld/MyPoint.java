@@ -89,7 +89,7 @@ public class MyPoint implements Drawable, Entity{
     }
 
     public void draw(Graphics g, boolean debug){//@override Drawable
-	g.setColor(Color.green);
+	g.setColor(Color.orange);
 	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
 
 	if(debug){

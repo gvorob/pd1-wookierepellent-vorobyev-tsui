@@ -18,5 +18,5 @@ Log
 6/15	George	Oooze works properly now, sorta, still needs viscosity and constants tweaking
 6/17	Derek	Gravity on/off feature
 Project extension
-6/18	Derek	Side walls fix
-6/18	George	new mode for points
+6/18	Derek	Side walls fix, color differentiation schemes
+6/18	George	new mode for points (Node), toggle between point types

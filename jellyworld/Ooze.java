@@ -64,4 +64,16 @@ public class Ooze extends MyPoint{
 		return tempForce;
 		
 	}
+	
+	public void draw(Graphics g, boolean debug){//@override Drawable
+	g.setColor(Color.green);
+	g.fillOval((int)(pos.x - (pointSize / 2)),(int)(pos.y - (pointSize / 2)), pointSize, pointSize);
+
+	if(debug){
+	    g.setColor(Color.black);
+	    for (Link l : neighbors){
+		g.drawLine((int) this.pos.x, (int)this.pos.y, (int)l.other.getPos().x, (int)l.other.getPos().y);
+	    }
+	}
+    }
 }
