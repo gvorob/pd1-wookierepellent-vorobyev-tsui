@@ -5,6 +5,7 @@ import java.util.*;
 public class MyPoint implements Drawable, Entity{
     protected Vector2 pos;
     protected Vector2 velocity;
+	protected Vector2 accel;
     protected Vector2 gravity;
     protected double mass;
     protected int pointSize;
@@ -46,15 +47,24 @@ public class MyPoint implements Drawable, Entity{
 	Vector2 netForce = Vector2.Zero();
 	Vector2 tempForce;
 	for (Link l : neighbors){
-	    tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
-	    tempForce.setLength((float)(l.k * (tempForce.length() - l.len))); 
-	    netForce.add(tempForce);
+			netForce.add(getSpringForce(l));
 	    //Misc.prln("--" + tempForce.toString());
 	}
 	netForce.add(gravity);
-	velocity.scaleAndAdd(time,netForce);
+		accel = netForce;
+	}
+
+	public void update1b(float time){
+		velocity.scaleAndAdd(time,accel);
 	velocity.vecMult(0.98f);
 	if (isFixed) velocity = Vector2.Zero();
+
+	}
+
+	public Vector2 getSpringForce(Link l){
+		Vector2 tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
+		tempForce.setLength((float)(l.k * (tempForce.length() - l.len))); 
+		return tempForce;
     }
 
     public void update2(float time){
@@ -128,4 +138,7 @@ public class MyPoint implements Drawable, Entity{
 	}
 	neighbors.remove(temp);
     }
+
+
+
 }

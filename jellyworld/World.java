@@ -70,6 +70,10 @@ public class World{
 		Ooze p = new Ooze(new Vector2(m.getX(),m.getY()), b,connectRange);
 		//init things
 	}
+	public static void addNode(Mouse m, boolean b){//adds a new point at current mouse location
+		Node p = new Node(new Vector2(m.getX(),m.getY()), b,connectRange);
+		//init things
+	}
 
 
 
@@ -119,6 +123,11 @@ public class World{
 
 				break;
 			case 2:
+				if(m.getL() && !wasmousedown){
+					if(keys.getKey(KeyEvent.VK_SHIFT)) addNode(m, true);
+					else addNode(m, false);
+					wasmousedown = true;
+				}
 
 				break;
 
@@ -135,7 +144,7 @@ public class World{
 			case 1:
 				return "adding ooze";
 			case 2:
-				return "tool does nothing";
+				return "adding nodes";
 		}
 		return "invalid toolmode";
 	}
@@ -151,6 +160,9 @@ public class World{
 	{
 		for(Entity e: entities){
 			e.update1(time);
+		}
+		for(Entity e: entities){
+			e.update1b(time);
 		}
 		for(Entity e: entities){
 			e.update2(time);

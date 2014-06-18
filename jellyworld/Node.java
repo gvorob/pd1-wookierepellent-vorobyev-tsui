@@ -2,11 +2,11 @@ package jellyworld;
 import java.awt.*;
 import java.util.*;
 
-public class Ooze extends MyPoint{
+public class Node extends MyPoint{
 	private double connectRange;
 	private double breakLength = 1.2;//multiplier of relaxed length at which it breaks
 
-	public Ooze (Vector2 p, boolean fixed, double connectRange){
+	public Node (Vector2 p, boolean fixed, double connectRange){
 		super(p, fixed,connectRange);
 		this.connectRange = connectRange;
 	}
@@ -41,16 +41,5 @@ public class Ooze extends MyPoint{
 			}
 		}
 		super.update1(time);
-	}
-
-	public Vector2 getSpringForce(Link l){
-		Vector2 tempForce = Vector2.vecSubt(l.other.getPos(),this.pos);
-		float ratio = (float)(tempForce.length() - l.len);
-		if(ratio > 0){
-			ratio = (float)(ratio+1)/(ratio * ratio + 1); 
-		}
-		tempForce.setLength((float)(l.k * ratio)); 
-		return tempForce;
-		
 	}
 }
