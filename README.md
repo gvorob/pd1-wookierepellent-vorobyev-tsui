@@ -18,6 +18,7 @@ Before compiling a folder named "build" is needed in the same directory that con
 | What Works |  
 
 Click the screen to make ooze.  
+Click the screen while pressing Shift to make fixed ooze.
 Debug mode: see the neighbor connections by pressing "D"  
 Pause: press "P"  
 Gravity on/off: press "G"
